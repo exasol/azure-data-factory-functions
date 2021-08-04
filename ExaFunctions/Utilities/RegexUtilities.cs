@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace Exasol.Utilities
 {
-    class RegexUtilities
+    public class RegexUtilities
     {
         public static string GrabValueFromAzureConnectionString(string connString, string key)
         {

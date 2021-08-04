@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Exasol.Utilities
 {
-    class FilterUtilities
+    public class FilterUtilities
     {
         public static List<string> FilterFilenameListOnDirectoryPath(List<string> filenameList, String path)
         {
