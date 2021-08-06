@@ -1,18 +1,18 @@
 # User guide
 
-The guide will go over the deployment of the Exasol Azure helper Functions briefly and then focus on using them in the Azure Data Factory.
+The guide will go over the deployment of the Exasol Azure helper Functions briefly and then focus on using them in Azure Data Factory.
 
 ## Requirements
 
-An Azure subscription with sufficient privileges to create resource groups, storage accounts, function apps and an Azure data factory.
+An Azure subscription with sufficient privileges to create resource groups, storage accounts, function apps and an Azure Data Factory.
 
 ## Deployment
 
 A full section on all deployment options available for Azure Functions can be found in the Azure function docs under the how-to guides: [Zip push deployment for Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push)
 
-In this guide I'll elaborate on 1 of the easiest user friendly ways to set up Azure functions. 
+In this guide I'll elaborate on one of the easiest user-friendly ways to set up Azure functions. 
 
-The microsoft documentation on deploying azure functions is way more exhaustive so if this doesn't cover your needs you might find a better option there.
+The Microsoft documentation on deploying azure functions is way more exhaustive so if this doesn't cover your needs you might find a better option there.
 
 Let's get started:
 
@@ -140,7 +140,7 @@ Open 'Azure Data Factory Studio'.
 
 Let's set up a linked service to our function app so we can use these functions in our pipelines.
 
-Click on the 'manage' 'tab icon (wrench in a toolbox icon) to the left.
+Click on the 'manage' tab icon (wrench in a toolbox icon) to the left.
 
 Under 'Connections' Select 'Linked services', then Click 'New'.
 
@@ -178,7 +178,7 @@ Click the eye icon and then the copy icon to copy the key to your clipboard. Pas
 
 Click 'Create' to create the linked service.
 
-Click 'Publish all' at the top
+Click 'Publish all' at the top.
 
 This concludes the setup phase. We're now ready to start using these functions in our pipelines.
 
