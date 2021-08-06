@@ -190,9 +190,9 @@ All 3 functions are currently implemented using POST methods where you send a JS
 
 #### Query method
 
-Let's start with using the Query method:
+Let's start with using the Query method.
 
-Let's create a new pipeline, click on the '+' on the left, select pipeline. Give the pipeline a sensible name. 
+Create a new pipeline, click on the '+' on the left, select pipeline. Give the pipeline a sensible name. 
 
 Now let's drag in an Azure Function Activity and let's give it a name as well.
 
