@@ -18,9 +18,9 @@ Let's get started:
 
 ### Zip Deployment using the Azure Portal and Azure CLI:
 
-Setting everything up in the azure portal:
+Setting everything up in the Azure portal:
 
-Navigate to the azure portal and log in if you haven't done so yet: [Microsoft Azure](https://portal.azure.com/#home)
+Navigate to the Azure portal and log in if you haven't done so yet: [Microsoft Azure](https://portal.azure.com/#home)
 
 On the dashboard, click on 'Create a resource'.
 
@@ -66,7 +66,7 @@ Once the deployment is complete you'll get a notification and you can navigate t
 
 ![](./img/2021-08-04-15-14-28-image.png)
 
-We've now succesfully created our azure functions app. You can already take a look around. 
+We've now succesfully created our Azure functions app. You can already take a look around. 
 
 As you see there are no functions yet so our next step will be uploading these functions.
 
@@ -78,17 +78,17 @@ For this we'll use the Azure CLI tools.
 
 #### Get the Zipped Release of the Exasol Azure Helper Functions
 
-Get the packaged version of the exasol azure data factory functions here:
+Get the packaged version of the exasol Azure Data Factory functions here:
 
 Release.zip (TODO: add url)
 
 #### Deploy the zipped functions using the azure CLI
 
-Using the provided .zip in the release you can easily deploy the azure functions.
+Using the provided .zip in the release you can easily deploy the Azure functions.
 
 Download the .zip
 
-Use azure cli:
+Use Azure CLI:
 
 Login:
 
@@ -128,11 +128,11 @@ If you navigate back to your Function App and click on the Functions tab you wil
 
 These methods may be a bit more involved and require you to have Visual Studio or Visual Studio Code installed but might be more practical if you want to alter or add some of the behaviour of these functions yourself.
 
-You'll find guides for visual studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for visual studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp) 
+You'll find guides for Visual Studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for Visual Studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp) 
 
 ## Using the functions in Azure Data factory.
 
-If you haven't done so yet, create a 'Data Factory' in azure.
+If you haven't done so yet, create a 'Data Factory' in Azure.
 
 Open 'Azure Data Factory Studio'.
 
@@ -156,11 +156,11 @@ Pick a  good name,
 
 as integration runtime, select the 'AutoResolveIntegrationRuntime',
 
-select your azure subscription and your azure function app url (both are dropdowns).
+select your Azure subscription and your Azure Function App url (both are dropdowns).
 
 The last thing you got to fill in is the 'Function key'.
 
- This key is used to prevent others from accessing your azure functions and to authenticate your requests from within azure data factory.
+ This key is used to prevent others from accessing your Azure functions and to authenticate your requests from within Azure Data Factory.
 
 You can find this key (or create an additional one) in your Function App under Settings:
 
@@ -184,7 +184,7 @@ This concludes the setup phase. We're now ready to start using these functions i
 
 Open the 'Author' tab.
 
-### Using the exasol azure functions in your pipelines
+### Using the Exasol Azure Functions in your pipelines
 
 All 3 functions are currently implemented using POST methods where you send a JSON body containing the parameters.
 
@@ -202,7 +202,7 @@ Switch to the settings tab of the Azure Function Activity:![](./img/2021-08-05-1
 
 We need to select the linked service we just created in a dropdown here.
 
-Then we'll need to type in the name of the azure function we want to use, in this case 'QueryExasol'.
+Then we'll need to type in the name of the Azure Function we want to use, in this case 'QueryExasol'.
 
 Select 'POST' as the Method. Click in the body. 
 
@@ -254,7 +254,7 @@ In this case the POST body would then look somewhat like this:
 
 ### Azure Blob Storage Csv bulk import (durable)
 
-This function is built for bulk import of many, large csv files from azure blob storage into the exasol database.
+This function is built for bulk import of many, large csv files from Azure Blob Storage into the Exasol Database.
 
 The setup for this function is a little bit more involved than the query one since this is a durable function.
 
@@ -262,7 +262,7 @@ The setup for this function is a little bit more involved than the query one sin
 
 First, let's add a new 'Azure Function Activity' to our pipeline.
 
-As before, we select our azure function linked service
+As before, we select our Azure Function Linked Service
 
 For the function name we want to call we pick: 'DurableCsvBulkImportFromBlobStorage_HttpStart'
 
@@ -287,9 +287,9 @@ Let's go over the parameters/keys:
 
 `dbtable `is the schema.table name you want to insert data into.
 
-`storageaccountconnectionstring `is the connection string of the azure storage account where the csv files are stored, it can be found under the 'Access Keys' tab of the azure storage account.
+`storageaccountconnectionstring `is the connection string of the Azure storage account where the csv files are stored, it can be found under the 'Access Keys' tab of the Azure Storage Account.
 
-`storageaccountcontainername `is the name of the container in the azure storage account where the csv files are located
+`storageaccountcontainername `is the name of the container in the Azure storage account where the csv files are located
 
 `storageaccountcontainerpath `is the path of the csv files in the container that you want to import data from. This is an optional parameter. If you don't fill it in it it will import data from all the items in the container. You could also specify 1 file using this path.
 
