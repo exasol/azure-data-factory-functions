@@ -4,13 +4,13 @@ The guide will go over the deployment of the Exasol Azure helper Functions brief
 
 ## Requirements
 
-An azure subscription with sufficient privileges to create resource groups, storage accounts, function apps and an azure data factory.
+An Azure subscription with sufficient privileges to create resource groups, storage accounts, function apps and an Azure data factory.
 
 ## Deployment
 
-A full section on all deployment options available for Azure Functions can be found in the azure function docs under the how-to guides: [Zip push deployment for Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push)
+A full section on all deployment options available for Azure Functions can be found in the Azure function docs under the how-to guides: [Zip push deployment for Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push)
 
-In this guide I'll elaborate on 1 of the easiest user friendly ways to set up azure functions. 
+In this guide I'll elaborate on 1 of the easiest user friendly ways to set up Azure functions. 
 
 The microsoft documentation on deploying azure functions is way more exhaustive so if this doesn't cover your needs you might find a better option there.
 
