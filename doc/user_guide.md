@@ -96,21 +96,27 @@ Open a command line window ("cmd") or powershell or a terminal of your choice
 
 Type:
 
+```
 az login
+```
 
 Your preferred browser will open and you will be able to login.
 
 Now navigate to the folder where you downloaded the packaged zip file and run the following command:
 
-az webapp deployment source config-zip -g $resourceGroupName -n $functionName --src $sourceZipPath
+```
+az webapp deployment source config-zip -g resourceGroupName -n functionName --src $sourceZipPath
+```
 
-In our case this would be
+In our case this would be:
 
+```
 az webapp deployment source config-zip -g adf-ug-rg -n exaadfug --src adffunctions.zip .
+```
 
 Running this command might take a while.
 
-If everything is succesfull you'll get a JSON response describing the resource and that its ProvisioningState "succeeded".
+If everything is succesful you'll get a JSON response describing the resource and that its ProvisioningState "succeeded".
 
 ![](./img/2021-08-04-15-22-00-image.png)
 
@@ -120,7 +126,7 @@ If you navigate back to your Function App and click on the Functions tab you wil
 
 ### Alternate approach : Deploying to Azure using Visual Studio or Visual Code 'Publish'
 
-These methods may be a bit more involved and require you to have visual studio or visual studio code installed but might be more practical if you want to alter or add some of the behaviour of these functions yourself.
+These methods may be a bit more involved and require you to have Visual Studio or Visual Studio Code installed but might be more practical if you want to alter or add some of the behaviour of these functions yourself.
 
 You'll find guides for visual studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for visual studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp) 
 
@@ -162,7 +168,7 @@ You can find this key (or create an additional one) in your Function App under S
 
 Open a new tab in your browser and navigate to your Function App you set up in the earlier steps.
 
-In your function app, select the 'App keys' tab. 
+In your Function App, select the 'App keys' tab. 
 
 Under 'Host keys' you'll see the default key. We'll use this key, if you wish you could also create an additional key and use that one.
 
@@ -245,8 +251,6 @@ In this case the POST body would then look somewhat like this:
 "query":"SELECT COMPANY FROM CHICAGO_TAXI.COMPANIES"
 }
 ```
-
-### 
 
 ### Azure Blob Storage Csv bulk import (durable)
 
