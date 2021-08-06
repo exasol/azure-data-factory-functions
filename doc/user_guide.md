@@ -1,6 +1,6 @@
 # User guide
 
-The guide will go over the deployment of the Exasol Azure helper Functions briefly and then focus on using them in azure data factory itself.
+The guide will go over the deployment of the Exasol Azure helper Functions briefly and then focus on using them in the Azure Data Factory.
 
 ## Requirements
 
@@ -76,7 +76,7 @@ For this we'll use the Azure CLI tools.
 
 [Install the Azure CLI for Windows | Microsoft Docs](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-cli)
 
-#### Get the zipped release of the Exasol azure helper functions
+#### Get the Zipped Release of the Exasol Azure Helper Functions
 
 Get the packaged version of the exasol azure data factory functions here:
 
@@ -130,7 +130,7 @@ You'll find guides for visual studio here: https://docs.microsoft.com/en-us/azur
 
 If you haven't done so yet, create a ''Data Factory' in azure.
 
-Open ''Azure Data Factory Studio'.
+Open 'Azure Data Factory Studio'.
 
 ### Setting up a linked service to your function app
 
@@ -138,7 +138,7 @@ Let's set up a linked service to our function app so we can use these functions 
 
 Click on the ''manage' 'tab icon (wrench in a toolbox icon) to the left.
 
-Under 'Connections' Select 'Linked services', then Click ''New'.
+Under 'Connections' Select 'Linked services', then Click 'New'.
 
 ![](./img/2021-08-04-16-19-59-image.png)
 
@@ -233,7 +233,7 @@ You can then extract this data and further work with it in a new activity using 
 
 You can enter the values in the POST request body as plaintext, which is the simplest, but you could also use pipeline parameters,  global parameters, variables or data from previous activities.
 
-Personally I prefer storing my connection strings as secrets in azure key vault and then fetching these using web activities in my pipeline as an earlier step.
+We recommend storing my connection strings as secrets in the Azure Key Vault and then fetching them using web activities in the pipeline as an earlier step.
 
 There's a great article on how to set this up here:
 
