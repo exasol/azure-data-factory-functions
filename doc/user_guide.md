@@ -56,7 +56,7 @@ Create a new storage account name (recommended) or use an existing one.
 
 Take note of the name.
 
-As operating system pick 'Windows', ()this is because we use a .dll from the Exasol ADO .NET data provider that's not crossplatform.)
+As operating system pick 'Windows' (this is because we use a .dll from the Exasol ADO .NET data provider that's not cross-platform).
 
 Press 'Review + Create' and then press 'Create'.
 
