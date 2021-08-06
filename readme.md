@@ -2,7 +2,11 @@
 
 This repository contains auxiliary azure functions for use in Azure Data Factory pipelines.
 
-Included so far are a Azure Blob Storage CSV bulk import function and a query function.
+Included so far :
+
+- Azure Blob Storage CSV bulk import functions
+
+- Query function.
 
 Please see the [user guide](doc/user_guide.md) for detailed instructions.
 

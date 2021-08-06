@@ -58,7 +58,7 @@ Take note of the name.
 
 As operating system pick 'Windows', ()this is because we use a .dll from the Exasol ADO .NET data provider that's not crossplatform.)
 
-Press 'Review + Create' and then press ''Create'.
+Press 'Review + Create' and then press 'Create'.
 
 You'll get a notification saying 'Deployment is underway'. This might take a minute.
 
@@ -118,17 +118,15 @@ If you navigate back to your Function App and click on the Functions tab you wil
 
 <img src="file:///C:/adftut/doc/img/2021-08-04-15-28-19-image.png" title="" alt="" width="747">
 
-### Alternate approach : Deploying to Azure using Visual Studio or Visual Code ''Publish''
+### Alternate approach : Deploying to Azure using Visual Studio or Visual Code 'Publish'
 
 These methods may be a bit more involved and require you to have visual studio or visual studio code installed but might be more practical if you want to alter or add some of the behaviour of these functions yourself.
 
 You'll find guides for visual studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for visual studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp) 
 
-
-
 ## Using the functions in Azure Data factory.
 
-If you haven't done so yet, create a ''Data Factory' in azure.
+If you haven't done so yet, create a 'Data Factory' in azure.
 
 Open 'Azure Data Factory Studio'.
 
@@ -136,7 +134,7 @@ Open 'Azure Data Factory Studio'.
 
 Let's set up a linked service to our function app so we can use these functions in our pipelines.
 
-Click on the ''manage' 'tab icon (wrench in a toolbox icon) to the left.
+Click on the 'manage' 'tab icon (wrench in a toolbox icon) to the left.
 
 Under 'Connections' Select 'Linked services', then Click 'New'.
 
@@ -172,7 +170,7 @@ Click the eye icon and then the copy icon to copy the key to your clipboard. Pas
 
 ![](./img/2021-08-04-16-21-50-image.png)
 
-Click ''Create' to create the linked service.
+Click 'Create' to create the linked service.
 
 Click 'Publish all' at the top
 
@@ -190,11 +188,11 @@ Let's start with using the Query method:
 
 Let's create a new pipeline, click on the '+' on the left, select pipeline. Give the pipeline a sensible name. 
 
-Now let's drag in an azure function activity and let's give it a name as well.
+Now let's drag in an Azure Function Activity and let's give it a name as well.
 
 ![](./img/2021-08-05-14-12-44-image.png)
 
-Switch to the settings tab of the azure function activity:![](./img/2021-08-05-14-16-31-image.png)
+Switch to the settings tab of the Azure Function Activity:![](./img/2021-08-05-14-16-31-image.png)
 
 We need to select the linked service we just created in a dropdown here.
 
@@ -202,7 +200,7 @@ Then we'll need to type in the name of the azure function we want to use, in thi
 
 Select 'POST' as the Method. Click in the body. 
 
-An option to ''Add dynamic content' will appear.
+An option to 'Add dynamic content' will appear.
 
 While you could just copy paste the JSON body for the request below in the Body field I prefer pasting and working with it in the dynamic content tab because it's easier to format and you get an editor of sorts.
 
@@ -258,7 +256,7 @@ The setup for this function is a little bit more involved than the query one sin
 
 #### Add the azure function activity
 
-First, let's add a new 'azure function activity' to our pipeline.
+First, let's add a new 'Azure Function Activity' to our pipeline.
 
 As before, we select our azure function linked service
 
@@ -293,27 +291,27 @@ Let's go over the parameters/keys:
 
 `filesprocessedinparallel `is the amount of files processed in one operation. This is also an optional parameter. The default size is 1. In case of lots of smaller csv files it makes sense to increase this. If you have very large csv files then 1 or a lower number makes more sense.
 
-#### Adding a web activity to signal when the durable function has finished
+#### Adding a Web Activity to signal when the durable function has finished
 
-The next step, since this is a durable function, is to add another web activity to detect when the operation has finished.
+The next step, since this is a durable function, is to add another Web Activity to detect when the operation has finished.
 
-Let's drag in a ''web activity' next to the azure function activity we just created and connect the output of the azure function activity to the web activity by dragging the arrow from the green end of the azure activity to the web activity.
+Let's drag in a 'Web Activity' next to the Azure Function Activity we just created and connect the output of the Azure Function Activity to the Web Activity by dragging the arrow from the green end of the Azure activity to the Web activity.
 
 ![](./img/2021-08-05-16-43-09-image.png)
 
-Go to the settings tab of the web activity, there add the following as the Url:
+Go to the settings tab of the Web Activity, there add the following as the Url:
 
 `@activity('Durable Blob bulk import').output.statusQueryGetUri`
 
- (if you click 'Add dynamic content' you'll be able to select the previous activity under ''previous activity outputs'):
+ (if you click 'Add dynamic content' you'll be able to select the previous activity under 'Previous Activity Outputs'):
 
 ![](./img/2021-08-05-16-47-42-image.png)
 
-The web activity will poll here until the bulk import has succesfully finished or failed.
+The Web Activity will poll here until the bulk import has succesfully finished or failed.
 
 Note: If you want to keep your monitoring logs clear of sensitive data the Secure input option won't be enough because the final result will include the input (which contains connectionstrings and whatnot) as part of the response.
 
-For this you can add the following to your web activity url:
+For this you can add the following to your Web Activity url:
 
 `@concat(activity('Durable Blob bulk import').output.statusQueryGetUri,'&showInput=false')`
 
