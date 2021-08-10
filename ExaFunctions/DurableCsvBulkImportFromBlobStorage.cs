@@ -167,13 +167,6 @@ namespace Exasol
             {
                 throw new Exception("The storage account container name was not included in the request and is required. Use \"storageaccountcontainername\" to add this value to the request.");
             }
-            //the filepath within the blob storage container
-            //OPTIONAL : make this a wildcard/optional
-            //if (data.storageaccountcontainerpath)
-            //           {
-
-            //           }
-            //OPTIONAL the nr of files to process in parallel
             if (data.filesprocessedinparallel == null)
             {
                 data.filesprocessedinparallel = 1;
