@@ -17,6 +17,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Exasol
 {
+    //Documentation on durable functions:
     //http://dontcodetired.com/blog/post/Understanding-Azure-Durable-Functions-Part-4-Passing-Input-To-Orchestrations-and-Activities
     //https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-create-first-csharp?pivots=code-editor-visualstudio
     //https://docs.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-error-handling?tabs=csharp
@@ -45,6 +46,7 @@ namespace Exasol
 
             return outputs;
         }
+
         public class BulkImportParams
         {
             public int BatchNr { get; set; }
@@ -61,7 +63,8 @@ namespace Exasol
             {
                 filenameList = AzureUtilities.GetAzureFilesListInBlobContainerFolder(iop.AzureStorageAccountConnectionString, iop.AzureStorageAccountContainerName);
                 return FilterUtilities.FilterFilenameListOnDirectoryPath(filenameList, iop.AzureStorageAccountContainerPath);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message); //this looks silly but there were issues with (de)serializing the more complex exceptions and this at least gets relevant information to the end user.
             }
@@ -71,13 +74,14 @@ namespace Exasol
         [FunctionName("DurableCsvBulkImportFromBlobStorage_RunBulkImporter")]
         public static string RunBulkImporter([ActivityTrigger] BulkImportParams bio, ILogger log)
         {
-            
+
             log.LogInformation($"Running bulk import for batch {bio.BatchNr}");
             try
             {
                 string bulkloadingQuery = BulkloadingUtilities.ConstructBulkLoadingQuery(bio.IoParams.DbTable, bio.IoParams.AzureStorageAccountConnectionString, bio.IoParams.AzureStorageAccountContainerName, bio.FileNames);
                 var response = QueryUtilities.RunNonQuery(bio.IoParams.DbConnectionString, bulkloadingQuery);
-            } catch (Exception e)
+            }
+            catch (Exception e)
             {
                 throw new Exception(e.Message); //this looks silly but there were issues with (de)serializing the more complex exceptions and this at least gets relevant information to the end user.
             }
@@ -106,9 +110,7 @@ namespace Exasol
         {
             try
             {
-
-                var content = req.Content;
-                string jsonContent = await content.ReadAsStringAsync();
+                string jsonContent = await req.Content.ReadAsStringAsync();
                 dynamic data = RequestUtilities.DeserializeJsonBody(jsonContent);
 
                 CheckParameters(data);
