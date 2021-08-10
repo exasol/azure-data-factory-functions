@@ -25,7 +25,7 @@ namespace Exasol
                 DbCommand cmd = CreateCommand(query, connection);
                 if (queryType == QueryType.Query)
                 {
-                    ReadOutReader(result, cmd);
+                    ExecuteAndReadOutReader(result, cmd);
                 }
                 else
                 {
@@ -42,7 +42,7 @@ namespace Exasol
         {
             return Run(connString, query, QueryType.NonQuery);
         }
-        private static void ReadOutReader(JObject result, DbCommand cmd)
+        private static void ExecuteAndReadOutReader(JObject result, DbCommand cmd)
         {
             DbDataReader reader = cmd.ExecuteReader();
 
