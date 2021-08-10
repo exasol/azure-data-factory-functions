@@ -8,7 +8,12 @@ namespace Exasol
 {
     public class QueryUtilities
     {
-        public static JObject RunQuery(string connString, string query)
+        public enum QueryType
+        {
+            Query,
+            NonQuery
+        }
+        public static JObject Run(string connString, string query, QueryType queryType)
         {
             JObject result = new JObject();
             DbProviderFactory factory = GetFactory();
@@ -18,12 +23,25 @@ namespace Exasol
                 connection.ConnectionString = connString;
                 connection.Open();
                 DbCommand cmd = CreateCommand(query, connection);
-
-                ReadOutReader(result, cmd);
+                if (queryType == QueryType.Query)
+                {
+                    ReadOutReader(result, cmd);
+                }
+                else
+                {
+                    ExecuteAndReturnNrOfAffectedRows(result, cmd);
+                }
             }
             return result;
         }
-
+        public static JObject RunQuery(string connString, string query)
+        {
+            return Run(connString, query, QueryType.Query);
+        }
+        public static JObject RunNonQuery(string connString, string query)
+        {
+            return Run(connString, query, QueryType.NonQuery);
+        }
         private static void ReadOutReader(JObject result, DbCommand cmd)
         {
             DbDataReader reader = cmd.ExecuteReader();
@@ -64,24 +82,6 @@ namespace Exasol
 
             factory = DbProviderFactories.GetFactory("Exasol.EXADataProvider");
             return factory;
-        }
-
-        public static JObject RunNonQuery(string connString, string query)
-        {
-            DbProviderFactory factory = GetFactory();
-
-            JObject result = new JObject();
-
-            using (DbConnection connection = factory.CreateConnection())
-            {
-                connection.ConnectionString = connString;
-                connection.Open();
-                DbCommand cmd = CreateCommand(query, connection);
-
-                ExecuteAndReturnNrOfAffectedRows(result, cmd);
-
-            }
-            return result;
         }
 
         private static void ExecuteAndReturnNrOfAffectedRows(JObject result, DbCommand cmd)
