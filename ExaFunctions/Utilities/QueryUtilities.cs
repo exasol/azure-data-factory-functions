@@ -19,29 +19,34 @@ namespace Exasol
                 connection.Open();
                 DbCommand cmd = CreateCommand(query, connection);
 
-                DbDataReader reader = cmd.ExecuteReader();
-
-                var jArray = new JArray();
-
-                while (reader.Read())
-                {
-                    var rowObject = new JObject();
-                    var nrOfFields = reader.FieldCount;
-                    for (var i = 0; i < nrOfFields; i++)
-                    {
-                        var columnName = reader.GetName(i);
-                        var columnValue = reader[i].ToString();
-
-                        rowObject.Add(columnName, columnValue);
-
-                    }
-                    jArray.Add(rowObject);
-                }
-
-                result.Add(new JProperty("results", jArray));
-                reader.Close();
+                ReadOutReader(result, cmd);
             }
             return result;
+        }
+
+        private static void ReadOutReader(JObject result, DbCommand cmd)
+        {
+            DbDataReader reader = cmd.ExecuteReader();
+
+            var jArray = new JArray();
+
+            while (reader.Read())
+            {
+                var rowObject = new JObject();
+                var nrOfFields = reader.FieldCount;
+                for (var i = 0; i < nrOfFields; i++)
+                {
+                    var columnName = reader.GetName(i);
+                    var columnValue = reader[i].ToString();
+
+                    rowObject.Add(columnName, columnValue);
+
+                }
+                jArray.Add(rowObject);
+            }
+
+            result.Add(new JProperty("results", jArray));
+            reader.Close();
         }
 
         private static DbCommand CreateCommand(string query, DbConnection connection)
@@ -73,12 +78,17 @@ namespace Exasol
                 connection.Open();
                 DbCommand cmd = CreateCommand(query, connection);
 
-                int rowsAffected = cmd.ExecuteNonQuery();
-
-                result.Add("rows affected", rowsAffected);
+                ExecuteAndReturnNrOfAffectedRows(result, cmd);
 
             }
             return result;
+        }
+
+        private static void ExecuteAndReturnNrOfAffectedRows(JObject result, DbCommand cmd)
+        {
+            int rowsAffected = cmd.ExecuteNonQuery();
+
+            result.Add("rows affected", rowsAffected);
         }
     }
 }
