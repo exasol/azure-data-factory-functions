@@ -80,7 +80,7 @@ For this we'll use the Azure CLI tools.
 
 Get the packaged version of the exasol Azure Data Factory functions here:
 
-Release.zip (TODO: add url)
+https://github.com/exasol/azure-data-factory-functions/releases/download/1.0.0/adffunctions.zip
 
 #### Deploy the zipped functions using the azure CLI
 
