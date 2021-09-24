@@ -111,7 +111,7 @@ az webapp deployment source config-zip -g resourceGroupName -n functionName --sr
 In our case this would be:
 
 ```
-az webapp deployment source config-zip -g adf-ug-rg -n exaadfug --src adffunctions.zip .
+az webapp deployment source config-zip -g adf-ug-rg -n exaadfug --src adffunctions.zip
 ```
 
 Running this command might take a while.
@@ -128,11 +128,11 @@ If you navigate back to your Function App and click on the Functions tab you wil
 
 These methods may be a bit more involved and require you to have Visual Studio or Visual Studio Code installed but might be more practical if you want to alter or add some of the behaviour of these functions yourself.
 
-You'll find guides for Visual Studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for Visual Studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp) 
+You'll find guides for Visual Studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for Visual Studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp)
 
 ## Using the functions in Azure Data factory.
 
-If you haven't done so yet, create a 'Data Factory' in Azure.
+If you haven't done so yet, create a 'Data Factory' in Azure. For that, you can go to services, find 'Data Factories' and 'Create' a new one.
 
 Open 'Azure Data Factory Studio'.
 
@@ -237,7 +237,7 @@ You can then extract this data and further work with it in a new activity using 
 
 You can enter the values in the POST request body as plaintext, which is the simplest, but you could also use pipeline parameters,  global parameters, variables or data from previous activities.
 
-We recommend storing my connection strings as secrets in the Azure Key Vault and then fetching them using web activities in the pipeline as an earlier step.
+We recommend storing your connection strings as secrets in the Azure Key Vault and then fetching them using web activities in the pipeline as an earlier step.
 
 There's a great article on how to set this up here:
 
