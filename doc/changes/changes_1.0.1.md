@@ -1,4 +1,4 @@
-# Azure Data Factory Functions 1.0.1, released 2021-09-21
+# Azure Data Factory Functions 1.0.1, released 2021-09-27
 
 Code name: Updated user guide
 
