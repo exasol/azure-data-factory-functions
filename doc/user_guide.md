@@ -10,7 +10,7 @@ An Azure subscription with sufficient privileges to create resource groups, stor
 
 A full section on all deployment options available for Azure Functions can be found in the Azure function docs under the how-to guides: [Zip push deployment for Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/deployment-zip-push)
 
-In this guide I'll elaborate on one of the easiest user-friendly ways to set up Azure functions. 
+In this guide I'll elaborate on one of the easiest user-friendly ways to set up Azure functions.
 
 The Microsoft documentation on deploying azure functions is way more exhaustive so if this doesn't cover your needs you might find a better option there.
 
@@ -52,7 +52,7 @@ Next, press 'Hosting'. This will bring you to the next setup screen.
 
 ![](./img/2021-08-04-15-11-27-image.png)
 
-Create a new storage account name (recommended) or use an existing one. 
+Create a new storage account name (recommended) or use an existing one.
 
 Take note of the name.
 
@@ -66,7 +66,7 @@ Once the deployment is complete you'll get a notification and you can navigate t
 
 ![](./img/2021-08-04-15-14-28-image.png)
 
-We've now succesfully created our Azure functions app. You can already take a look around. 
+We've now succesfully created our Azure functions app. You can already take a look around.
 
 As you see there are no functions yet so our next step will be uploading these functions.
 
@@ -111,7 +111,7 @@ az webapp deployment source config-zip -g resourceGroupName -n functionName --sr
 In our case this would be:
 
 ```
-az webapp deployment source config-zip -g adf-ug-rg -n exaadfug --src adffunctions.zip .
+az webapp deployment source config-zip -g adf-ug-rg -n exaadfug --src adffunctions.zip
 ```
 
 Running this command might take a while.
@@ -128,11 +128,11 @@ If you navigate back to your Function App and click on the Functions tab you wil
 
 These methods may be a bit more involved and require you to have Visual Studio or Visual Studio Code installed but might be more practical if you want to alter or add some of the behaviour of these functions yourself.
 
-You'll find guides for Visual Studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for Visual Studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp) 
+You'll find guides for Visual Studio here: https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio and for Visual Studio code here: [Create a C# function using Visual Studio Code - Azure Functions | Microsoft Docs](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-csharp)
 
 ## Using the functions in Azure Data factory.
 
-If you haven't done so yet, create a 'Data Factory' in Azure.
+If you haven't done so yet, create a 'Data Factory' in Azure. For that, you can go to services, find 'Data Factories' and 'Create' a new one.
 
 Open 'Azure Data Factory Studio'.
 
@@ -168,7 +168,7 @@ You can find this key (or create an additional one) in your Function App under S
 
 Open a new tab in your browser and navigate to your Function App you set up in the earlier steps.
 
-In your Function App, select the 'App keys' tab. 
+In your Function App, select the 'App keys' tab.
 
 Under 'Host keys' you'll see the default key. We'll use this key, if you wish you could also create an additional key and use that one.
 
@@ -192,7 +192,7 @@ All 3 functions are currently implemented using POST methods where you send a JS
 
 Let's start with using the Query method.
 
-Create a new pipeline, click on the '+' on the left, select pipeline. Give the pipeline a sensible name. 
+Create a new pipeline, click on the '+' on the left, select pipeline. Give the pipeline a sensible name.
 
 Now let's drag in an Azure Function Activity and let's give it a name as well.
 
@@ -204,7 +204,7 @@ We need to select the linked service we just created in a dropdown here.
 
 Then we'll need to type in the name of the Azure Function we want to use, in this case 'QueryExasol'.
 
-Select 'POST' as the Method. Click in the body. 
+Select 'POST' as the Method. Click in the body.
 
 An option to 'Add dynamic content' will appear.
 
@@ -221,7 +221,7 @@ After clicking 'Add dynamic content' a tab will open to the right. All that's le
 }
 ```
 
-In this case it's 2 parameters, both of them are required. 
+In this case it's 2 parameters, both of them are required.
 
 The `connectionstring` parameter is the connection string of the exasol database.
 
@@ -237,7 +237,7 @@ You can then extract this data and further work with it in a new activity using 
 
 You can enter the values in the POST request body as plaintext, which is the simplest, but you could also use pipeline parameters,  global parameters, variables or data from previous activities.
 
-We recommend storing my connection strings as secrets in the Azure Key Vault and then fetching them using web activities in the pipeline as an earlier step.
+We recommend storing your connection strings as secrets in the Azure Key Vault and then fetching them using web activities in the pipeline as an earlier step.
 
 There's a great article on how to set this up here:
 
