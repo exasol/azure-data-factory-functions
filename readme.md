@@ -1,12 +1,11 @@
-# Exasol Azure Data Factory functions
+# Exasol Azure Data Factory Functions
 
 This repository contains auxiliary azure functions for use in Azure Data Factory pipelines.
 
 Included so far :
 
 - Azure Blob Storage CSV bulk import functions
-
-- Query function.
+- Query function
 
 Please see the [user guide](doc/user_guide.md) for detailed instructions.
 
