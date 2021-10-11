@@ -14,7 +14,7 @@ namespace Exasol.Utilities
             {
                 data = JsonConvert.DeserializeObject(requestBody);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 throw new Exception("The JSON does not seem well formed. Please check the JSON body in the request.");
             }
