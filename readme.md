@@ -1,5 +1,7 @@
 # Exasol Azure Data Factory Functions
 
+[![.NET](https://github.com/exasol/azure-data-factory-functions/actions/workflows/dotnet.yml/badge.svg)](https://github.com/exasol/azure-data-factory-functions/actions/workflows/dotnet.yml)
+
 This repository contains auxiliary azure functions for use in Azure Data Factory pipelines.
 
 Included so far :
