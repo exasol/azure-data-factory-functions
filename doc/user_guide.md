@@ -24,19 +24,19 @@ Navigate to the Azure portal and log in if you haven't done so yet: [Microsoft A
 
 On the dashboard, click on 'Create a resource'.
 
-![](./img/2021-08-04-15-02-42-image.png)
+![](./img/dashboard-create-new-resource.png)
 
 Search for 'function', then pick 'Function App'.
 
-![](./img/2021-08-04-15-04-40-image.png)
+![](./img/select-function-app.png)
 
 Click 'Create'.
 
-![](./img/2021-08-04-15-05-43-image.png)
+![](./img/function-app-create.png)
 
 Now we need to do some setup:
 
-![](./img/2021-08-04-15-06-27-image.png)
+![](./img/create-function-app-config-1.png)
 
 Create a new resource group (or use an existing one if you want). Take note of the name.
 
@@ -46,11 +46,11 @@ Pick '.NET' as the runtime stack and pick '3.1' as the version.
 
 Pick the region that fits you the most (this will probably the same region as where you host the Azure Data Factory as well).
 
-![](./img/2021-08-04-15-08-55-image.png)
+![](./img/create-function-app-config-2.png)
 
 Next, press 'Hosting'. This will bring you to the next setup screen.
 
-![](./img/2021-08-04-15-11-27-image.png)
+![](./img/create-function-app-config-3.png)
 
 Create a new storage account name (recommended) or use an existing one.
 
@@ -64,7 +64,7 @@ You'll get a notification saying 'Deployment is underway'. This might take a min
 
 Once the deployment is complete you'll get a notification and you can navigate to the resource. Do so.
 
-![](./img/2021-08-04-15-14-28-image.png)
+![](./img/deployment-complete.png)
 
 We've now succesfully created our Azure functions app. You can already take a look around.
 
@@ -118,11 +118,9 @@ Running this command might take a while.
 
 If everything is succesful you'll get a JSON response describing the resource and that its ProvisioningState "succeeded".
 
-![](./img/2021-08-04-15-22-00-image.png)
+![](./img/zip-deployment-response.png)
 
-If you navigate back to your Function App and click on the Functions tab you will see that the helper functions are now present:
-
-<img src="file:///C:/adftut/doc/img/2021-08-04-15-28-19-image.png" title="" alt="" width="747">
+If you navigate back to your Function App and click on the Functions tab you will see that the helper functions are now present.
 
 ### Alternate approach : Deploying to Azure using Visual Studio or Visual Code 'Publish'
 
@@ -144,11 +142,11 @@ Click on the 'manage' tab icon (wrench in a toolbox icon) to the left.
 
 Under 'Connections' Select 'Linked services', then Click 'New'.
 
-![](./img/2021-08-04-16-19-59-image.png)
+![](./img/create-function-app-linked-service-1.png)
 
 Click the Compute tab at the top, select 'Azure Function'.
 
-![](./img/2021-08-04-16-20-15-image.png)
+![](./img/create-function-app-linked-service-2.png)
 
 We have some configuration to do:
 
@@ -164,7 +162,7 @@ The last thing you got to fill in is the 'Function key'.
 
 You can find this key (or create an additional one) in your Function App under Settings:
 
-![](./img/2021-08-04-16-25-39-image.png)
+![](./img/create-function-app-linked-service-3.png)
 
 Open a new tab in your browser and navigate to your Function App you set up in the earlier steps.
 
@@ -174,7 +172,7 @@ Under 'Host keys' you'll see the default key. We'll use this key, if you wish yo
 
 Click the eye icon and then the copy icon to copy the key to your clipboard. Paste this key into the Function key field of the new linked service we're creating.
 
-![](./img/2021-08-04-16-21-50-image.png)
+![](./img/app-keys-location.png)
 
 Click 'Create' to create the linked service.
 
@@ -196,9 +194,9 @@ Create a new pipeline, click on the '+' on the left, select pipeline. Give the p
 
 Now let's drag in an Azure Function Activity and let's give it a name as well.
 
-![](./img/2021-08-05-14-12-44-image.png)
+![](./img/pipeline-function-app.png)
 
-Switch to the settings tab of the Azure Function Activity:![](./img/2021-08-05-14-16-31-image.png)
+Switch to the settings tab of the Azure Function Activity:![](./img/pipeline-function-app-settings.png)
 
 We need to select the linked service we just created in a dropdown here.
 
@@ -210,7 +208,7 @@ An option to 'Add dynamic content' will appear.
 
 While you could just copy paste the JSON body for the request below in the Body field I prefer pasting and working with it in the dynamic content tab because it's easier to format and you get an editor of sorts.
 
-![](./img/2021-08-05-14-20-42-image.png)
+![](./img/pipeline-function-app-settings-2.png)
 
 After clicking 'Add dynamic content' a tab will open to the right. All that's left to do now is paste in the request body:
 
@@ -301,7 +299,7 @@ The next step, since this is a durable function, is to add another Web Activity 
 
 Let's drag in a 'Web Activity' next to the Azure Function Activity we just created and connect the output of the Azure Function Activity to the Web Activity by dragging the arrow from the green end of the Azure activity to the Web activity.
 
-![](./img/2021-08-05-16-43-09-image.png)
+![](./img/add-web-activity.png)
 
 Go to the settings tab of the Web Activity, there add the following as the Url:
 
@@ -309,7 +307,7 @@ Go to the settings tab of the Web Activity, there add the following as the Url:
 
  (if you click 'Add dynamic content' you'll be able to select the previous activity under 'Previous Activity Outputs'):
 
-![](./img/2021-08-05-16-47-42-image.png)
+![](./img/web-activity-dynamic-content.png)
 
 The Web Activity will poll here until the bulk import has succesfully finished or failed.
 
