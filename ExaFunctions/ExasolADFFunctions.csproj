@@ -3,6 +3,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AzureFunctionsVersion>v3</AzureFunctionsVersion>
     <UserSecretsId>0488569f-ef1d-4a80-a5c3-48a404f52598</UserSecretsId>
+    <Authors>Pieterjan Spoelders</Authors>
+    <Company>Exasol AG</Company>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Storage.Blobs" Version="12.9.0" />
