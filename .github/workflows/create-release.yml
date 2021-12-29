@@ -35,7 +35,7 @@ jobs:
     - name: Install error crawler
       run: dotnet tool update -g exasol-error-crawler
     - name: Run error crawler
-      run: exasol-error-crawler
+      run: exasol-error-crawler -t ADF
     - name: make release
     #https://github.com/marketplace/actions/create-release
       uses: ncipollo/release-action@v1
