@@ -12,6 +12,7 @@ using Newtonsoft.Json.Linq;
 using System.Text;
 using System.Data;
 using Exasol.Utilities;
+using Exasol.ErrorReporting;
 
 namespace Exasol
 {
@@ -63,11 +64,11 @@ namespace Exasol
         {
             if (connString == null)
             {
-                throw new Exception("You need to provide a connection string in the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-Q-1").Message("You need to provide a connection string in the request.").ToString());
             }
             if (query == null)
             {
-                throw new Exception("You need to provide a query in the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-Q-2").Message("You need to provide a query in the request.").ToString());
             }
         }
     }

@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Exasol.ErrorReporting;
 using Exasol.Utilities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -66,7 +67,7 @@ namespace Exasol
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message); //this looks silly but there were issues with (de)serializing the more complex exceptions and this at least gets relevant information to the end user.
+                throw new Exception(ExaError.MessageBuilder("E-ADF-DCSV-6").Message($"Something went wrong while fetching the file names: {e.Message}").ToString()); //this looks silly but there were issues with (de)serializing the more complex exceptions and this at least gets relevant information to the end user.
             }
 
         }
@@ -83,7 +84,7 @@ namespace Exasol
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message); //this looks silly but there were issues with (de)serializing the more complex exceptions and this at least gets relevant information to the end user.
+                throw new Exception(ExaError.MessageBuilder("E-ADF-DCSV-5").Message($"Something went wrong running bulk loader batch {bio.BatchNr}: {e.Message}").ToString()); //this looks silly but there were issues with (de)serializing the more complex exceptions and this at least gets relevant information to the end user.
             }
             return $"Batch {bio.BatchNr}: OK";
         }
@@ -152,22 +153,22 @@ namespace Exasol
             ////the target db connection string
             if (data.dbconnectionstring == null)
             {
-                throw new Exception("The database connection string was not included in the request and is required. Use \"dbconnectionstring\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-DCSV-1").Message("The database connection string was not included in the request and is required.").Mitigation("Use \"dbconnectionstring\" to add this value to the request.").ToString());
             }
             //the target db table
             if (data.dbtable == null)
             {
-                throw new Exception("The database table name was not included in the request and is required. Use \"dbtable\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-DCSV-2").Message("The database table name was not included in the request and is required.").Mitigation("Use \"dbtable\" to add this value to the request.").ToString());
             }
             //the azure storage account connection string
             if (data.storageaccountconnectionstring == null)
             {
-                throw new Exception("The storage account connection string was not included in the request and is required. Use \"storageaccountconnectionstring\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-DCSV-3").Message("The storage account connection string was not included in the request and is required.").Mitigation("Use \"storageaccountconnectionstring\" to add this value to the request.").ToString());
             }
             //the name of the blob storage container withing the storage account
             if (data.storageaccountcontainername == null)
             {
-                throw new Exception("The storage account container name was not included in the request and is required. Use \"storageaccountcontainername\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-DCSV-4").Message("The storage account container name was not included in the request and is required.").Mitigation("Use \"storageaccountcontainername\" to add this value to the request.").ToString());
             }
             if (data.filesprocessedinparallel == null)
             {
