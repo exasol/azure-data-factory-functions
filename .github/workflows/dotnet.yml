@@ -18,7 +18,7 @@ jobs:
       with:
         dotnet-version: 3.1.x
     - name: Add Exasol GH Nuget Source
-      run: dotnet nuget add source --username exa-ci-1 --password ${{ secrets.GITHUB_TOKEN }} --name github-exasol "https://nuget.pkg.github.com/EXASOL/index.json"
+      run: dotnet nuget add source --username exa-ci-1 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github-exasol "https://nuget.pkg.github.com/EXASOL/index.json"
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
