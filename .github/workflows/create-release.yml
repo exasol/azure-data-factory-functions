@@ -25,7 +25,7 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish
-      run: dotnet publish -c Release - o publish
+      run: dotnet publish -c Release -o publish
     - name: 7Zip
       run: 7z a release.zip .\publish\*
     - name: Install error crawler
