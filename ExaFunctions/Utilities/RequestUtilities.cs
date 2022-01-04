@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Exasol.ErrorReporting;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -16,7 +17,7 @@ namespace Exasol.Utilities
             }
             catch (Exception)
             {
-                throw new Exception("The JSON does not seem well formed. Please check the JSON body in the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-JSON-1").Message("The JSON does not seem well formed.").Mitigation("Please check the JSON body in the request.").ToString());
             }
 
             return data;

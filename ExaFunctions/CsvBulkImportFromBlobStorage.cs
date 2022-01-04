@@ -12,6 +12,7 @@ using Exasol.Utilities;
 using System.Linq;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using Exasol.ErrorReporting;
 
 namespace Exasol
 {
@@ -64,22 +65,22 @@ namespace Exasol
             ////the target db connection string
             if (data.dbconnectionstring == null)
             {
-                throw new Exception("The database connection string was not included in the request and is required. Use \"dbconnectionstring\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-CSV-1").Message("The database connection string was not included in the request and is required.").Mitigation("Use \"dbconnectionstring\" to add this value to the request.").ToString()) ;
             }
             //the target db table
             if (data.dbtable == null)
             {
-                throw new Exception("The database table name was not included in the request and is required. Use \"dbtable\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-CSV-2").Message("The database table name was not included in the request and is required.").Mitigation("Use \"dbtable\" to add this value to the request.").ToString());
             }
             //the azure storage account connection string
             if (data.storageaccountconnectionstring == null)
             {
-                throw new Exception("The storage account connection string was not included in the request and is required. Use \"storageaccountconnectionstring\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-CSV-3").Message("The storage account connection string was not included in the request and is required.").Mitigation("Use \"storageaccountconnectionstring\" to add this value to the request.").ToString());
             }
             //the name of the blob storage container withing the storage account
             if (data.storageaccountcontainername == null)
             {
-                throw new Exception("The storage account container name was not included in the request and is required. Use \"storageaccountcontainername\" to add this value to the request.");
+                throw new Exception(ExaError.MessageBuilder("E-ADF-CSV-4").Message("The storage account container name was not included in the request and is required.").Mitigation("Use \"storageaccountcontainername\" to add this value to the request.").ToString());
             }
         }
     }

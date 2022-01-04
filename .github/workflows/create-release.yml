@@ -1,0 +1,44 @@
+name: .NET - Create Release
+
+on: 
+  push:
+    tags:
+    - '*'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.x
+    - name: Setup .NET 5 (for crawler tool)
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Add Exasol GH Nuget Source
+      run: dotnet nuget add source --username exa-ci-1 --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github-exasol "https://nuget.pkg.github.com/EXASOL/index.json"
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish ExaFunctions -c Release -o publish
+    - name: 7Zip
+      run: 7z a release.zip .\publish\*
+    - name: Install error crawler
+      run: dotnet tool update -g exasol-error-crawler
+    - name: Run error crawler
+      run: exasol-error-crawler -t ADF
+    - name: make release
+    #https://github.com/marketplace/actions/create-release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.zip,error_code_report.json"
+        token: ${{ secrets.GITHUB_TOKEN }}
