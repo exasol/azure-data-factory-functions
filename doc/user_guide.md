@@ -78,9 +78,7 @@ For this we'll use the Azure CLI tools.
 
 #### Get the Zipped Release of the Exasol Azure Helper Functions
 
-Get the packaged version of the exasol Azure Data Factory functions here:
-
-https://github.com/exasol/azure-data-factory-functions/releases/download/1.0.0/adffunctions.zip
+Get the latest packaged version of the exasol Azure Data Factory functions [here](https://github.com/exasol/azure-data-factory-functions/releases/).
 
 #### Deploy the zipped functions using the azure CLI
 
