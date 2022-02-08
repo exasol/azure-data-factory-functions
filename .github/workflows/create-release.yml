@@ -31,7 +31,7 @@ jobs:
     - name: Publish
       run: dotnet publish ExaFunctions -c Release -o publish
     - name: 7Zip
-      run: 7z a release.zip .\publish\*
+      run: 7z a adffunctions-${{github.ref_name}}.zip .\publish\*
     - name: Install error crawler
       run: dotnet tool update -g exasol-error-crawler
     - name: Run error crawler
@@ -40,5 +40,5 @@ jobs:
     #https://github.com/marketplace/actions/create-release
       uses: ncipollo/release-action@v1
       with:
-        artifacts: "release.zip,error_code_report.json"
+        artifacts: "adffunctions-${{github.ref_name}}.zip,error_code_report.json"
         token: ${{ secrets.GITHUB_TOKEN }}
