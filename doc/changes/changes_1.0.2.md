@@ -8,4 +8,4 @@ In this release, we fixed a reported CVE for one of the dependencies with a vers
 
 ## Dependency Updates
 
-* Updated `Azure.Storage.Blobs` to `1.0.2`
+* Updated `Azure.Storage.Blobs` to `12.13.1`
