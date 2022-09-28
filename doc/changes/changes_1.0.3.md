@@ -1,4 +1,4 @@
-# Azure Data Factory Functions 1.0.4, released 2022-01-04
+# Azure Data Factory Functions 1.0.3, released 2022-01-04
 
 Code name: Added C# Exasol error code library
 
