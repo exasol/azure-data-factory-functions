@@ -1,4 +1,4 @@
-# Azure Data Factory Functions 1.0.2, released 2022-09-27
+# Azure Data Factory Functions 1.0.4, released 2022-09-28
 
 Code name: Update for reported CVE in Azure.Storage.Blobs 
 
