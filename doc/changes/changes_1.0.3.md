@@ -1,6 +1,6 @@
 # Azure Data Factory Functions 1.0.4, released 2022-01-04
 
-Code name: Update for reported CVE in Azure.Storage.Blobs 
+Code name: Added C# Exasol error code library
 
 ## Summary
 
@@ -9,7 +9,6 @@ In this release, we added and are now using the C# Exasol error code library for
 ## Features
 
 * #15: Add and use Exasol error code library for error handling.
-* Github workflows - release on tag.
 
 ## Dependency Updates
 
