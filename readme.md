@@ -18,3 +18,10 @@ The project uses [ADO.NET Data Provider | Exasol Documentation](https://docs.exa
 The CSV bulk import function being utilized is documented here:
 
 [Load Data from Azure&#160;Blob Storage | Exasol Documentation](https://docs.exasol.com/loading_data/load_data_azure_blob.htm)
+
+
+## Developer guide
+
+Developer guide can be found [here](doc/developer_guide.md).
+
+
