@@ -1,4 +1,4 @@
-# Azure Data Factory Functions 1.0.5, released 2022-05-07
+# Azure Data Factory Functions 1.0.5, released 2026-05-08
 
 Code name: Update dependencies, target newer .NET version
 
