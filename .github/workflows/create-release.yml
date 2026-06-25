@@ -29,10 +29,6 @@ jobs:
       run: dotnet publish ExaFunctions -c Release -o publish
     - name: 7Zip
       run: 7z a adffunctions-${{github.ref_name}}.zip .\publish\*
-    - name: Setup .NET 5 (for crawler tool)
-      uses: actions/setup-dotnet@v5
-      with:
-        dotnet-version: 5.0.x
     - name: Install error crawler
       run: dotnet tool update -g exasol-error-crawler
     - name: Run error crawler
